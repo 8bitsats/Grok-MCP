@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grokart
+  labels:
+    app: grokart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grokart
+  template:
+    metadata:
+      labels:
+        app: grokart
+    spec:
+      containers:
+      - name: grokart
+        image: grokart:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: X_AI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: grokart-secrets
+              key: X_AI_API_KEY
+        resources:
+          limits:
+            cpu: "1"
+            memory: "512Mi"
+          requests:
+            cpu: "500m"
+            memory: "256Mi"
+        readinessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - "ps aux | grep node | grep -v grep"
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          exec:
+            command:
+            - sh
+            - -c
+            - "ps aux | grep node | grep -v grep"
+          initialDelaySeconds: 15
+          periodSeconds: 20
+      restartPolicy: Always
