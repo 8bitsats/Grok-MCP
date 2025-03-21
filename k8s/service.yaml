@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grokart
+  labels:
+    app: grokart
+spec:
+  selector:
+    app: grokart
+  # For an MCP server, we likely don't need a Service. 
+  # This is included if there's a need to expose the MCP server within the cluster.
+  # If this service needs to be accessed outside the cluster, you might want to use a LoadBalancer type.
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    name: http
