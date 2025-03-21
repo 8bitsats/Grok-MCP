@@ -20,9 +20,9 @@ import axios from "axios";
  * Retrieve the xAI API key from environment variables.
  * This must be provided in the MCP server configuration.
  */
-const XAI_API_KEY = process.env.XAI_API_KEY;
+const XAI_API_KEY = process.env.X_AI_API_KEY;
 if (!XAI_API_KEY) {
-  throw new Error("XAI_API_KEY environment variable is required");
+  throw new Error("X_AI_API_KEY environment variable is required");
 }
 
 /**

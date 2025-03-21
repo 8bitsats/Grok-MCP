@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  grokart:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # If the server needs to expose an HTTP endpoint, uncomment the ports section
+    # ports:
+    #   - "3000:3000"
+    volumes:
+      - ./logs:/app/logs
+    # Simple healthcheck to ensure the container is running
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
