@@ -1,11 +1,11 @@
 {
-  "name": "grokart",
-  "version": "0.1.0",
-  "description": "a grok integrated MCP server - Text analysis using Grok-2",
+  "name": "grok-mcp",
+  "version": "1.0.0",
+  "description": "Advanced Grok MCP Server - Chat, Image Generation, Vision, Live Search, Voice, and Encrypted Reasoning",
   "private": true,
   "type": "module",
   "bin": {
-    "grokart": "./build/index.js"
+    "grok-mcp": "./build/index.js"
   },
   "files": [
     "build"
@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "0.6.0",
-    "axios": "^1.8.4"
+    "axios": "^1.8.4",
+    "openai": "^4.77.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.24",
